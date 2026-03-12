@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box model</title>
+    <style>
+        div {
+            border: 1px solid red;
+            /* padding: 10px; */
+        }
+        span {
+            /* border: 1px solid blue; */
+            padding: 10px;
+            background-color: aquamarine;
+        }
+        .d1, .d2 { margin: 20px;}
+        .d2 { overflow: hidden;}
+        .d2 span { margin: 30px;} /* inline-level : margin이 적용이 안됨 */
+        .padding {
+            /* padding: T(top) R(right) B(bottom) L(left) ; */
+            /* padding: 10px 30px 50px 40px; */
+            /* padding: 20px 40px; */
+            padding: 40px;
+        }
+        .margin {
+            /* margin: T(top) R(right) B(bottom) L(left) ; */
+            /* margin: 10px 30px 50px 40px; */
+            /* margin: 20px 40px; */
+            margin: 40px;
+        }
+        p, h3 {
+            border: 1px solid green;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Box Model Style :: padding, border, margin</h1>
+    <div class="d1">Box Model - Content</div>
+    <div class="d2">
+        <span>Box Model - Content(span)</span>
+    </div>
+    <div class="padding">
+        <h3>Padding</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Omnis repudiandae illum nobis. Ratione iste dolorum autem dolores ab.
+              Aspernatur impedit minus vitae accusantium, deserunt asperiores?
+               Aliquam hic corrupti temporibus voluptates.</p>
+    </div>
+    <div class="margin">
+        <h3>Margin</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Omnis repudiandae illum nobis. Ratione iste dolorum autem dolores ab.
+              Aspernatur impedit minus vitae accusantium, deserunt asperiores?
+               Aliquam hic corrupti temporibus voluptates.</p>
+    </div>
+</body>
+</html>

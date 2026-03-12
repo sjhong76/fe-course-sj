@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-sizing</title>
+    <style>
+        /* div {
+            width: 300px;
+            height: 200px;
+            margin: 20px;
+            background-color: aquamarine;
+        } */
+        .content-box {
+            box-sizing: content-box; /* box-sizing default 값 */
+            border: 10px solid red;
+            padding: 0 20px;
+        }
+        .border-box {
+            box-sizing: border-box;
+            border: 10px solid blue;
+            padding: 0 10px;
+        }
+        .d1 {
+            width: 800px;
+            height: 200px;
+            margin-top: 30px;
+            background-color: silver;
+            display: flex;
+        }
+        p {
+            width: 400px;
+            height: 200px;
+            background-color: tomato;
+            border: 10px solid blue;
+        }
+        .d0 {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        .d0 p {
+            border: 0;
+            border-right: 10px solid red;
+            background-color: #fff;
+            padding: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Box-sizing</h1>
+    <div class="content-box">
+        <ul>
+            <li>Box-siizing : content-box</li>
+            <li>width:300</li>
+            <li>border:10px</li>
+            <li>padding:0 20px</li>
+            <li>💥total-width: 360px</li>
+        </ul>
+    </div>
+    <div class="border-box">
+        <ul>
+            <li>Box-sizing : border-box</li>
+            <li>width:300</li>
+            <li>border:10px</li>
+            <li>padding:0 10px</li>
+            <li>💥total-width: 300px</li>
+        </ul>
+    </div>
+    <div class="d0">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+         Temporibus fuga delectus recusandae ipsa error!
+          Temporibus dolorum magni sed repellat maiores accusamus
+           provident fugiat aliquam ut animi.
+            Voluptatem illo nostrum dolores!</p>
+    </div>
+    <div class="d1">
+        <p class="p1">lorem</p>
+        <p class="p2">lorem</p>
+    </div>
+</body>
+</html>

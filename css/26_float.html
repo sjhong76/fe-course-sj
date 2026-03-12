@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float Style</title>
+    <style>
+        .box-group {
+            /* float: left; */
+        }
+        .box-group div {
+            width: 100px; height: 100px;
+            /* display: inline-block; */
+        }
+        .d1 { 
+            background-color: aquamarine;
+            float: left;
+        }
+        .d2 { 
+            background-color: yellow;
+            float: left;
+        }
+        .d3 { 
+            background-color: purple;
+            float: left;
+        }
+        .box-group p {
+            clear: left;
+        }
+        .img-group {
+            width: 500px;
+            height: 300px;
+            border: 1px solid blue;
+        }
+        .img-group img {
+            width: 100px;
+            height: 100px;
+            float: right;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Float Style : block-level의 엘리먼트를 한줄로 정렬하여 배치 </h1>
+    <div class="box-group">
+        <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="d3"></div>
+        <p>Lorem ipsum dolor sit amet consectetur,
+             adipisicing elit. Corrupti laboriosam eum sunt qui aut dignissimos,
+              laudantium, itaque accusantium eius reprehenderit quae quidem?
+               Quae quia corrupti dolorem omnis, odio incidunt est?</p>
+    </div>
+    <div class="img-group">
+        <img src="../images/favicon.ico" alt="독수리이미지">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Fugit eaque odio magni est fugiat assumenda,
+              laborum iusto itaque molestias,
+               neque iste molestiae omnis harum voluptatibus dolorem sed,
+                officiis reprehenderit vel.</p>
+    </div>
+</body>
+</html>
