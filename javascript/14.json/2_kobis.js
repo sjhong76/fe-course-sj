@@ -1,4 +1,4 @@
-let key = `6206e4e96646c240ac59f09bc0164ff9`;
+let key = `f247b305e4e797d0e2b59818f7413d9b`;
 
 const getJson = async(type, targetDt) => {
     const data_url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/search${type}BoxOfficeList.json?key=${key}&targetDt=${targetDt}`;
@@ -58,7 +58,7 @@ const handleMovieInfo = async (movieCd, rank, poster, posterObj) => {
 
 //poster 가져오기 : KMDB API
 const searchMoviePoster = async (movieNm, openDt) => {
-    const key = '59H5F0U0OFQB3R2261VM';
+    const key = '2PP11IY89669XP4RC1I1';
     let kmdb_url = `http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api`;
     kmdb_url += `/search_json2.jsp?collection=kmdb_new2&detail=Y`;
     kmdb_url += `&title=${movieNm}`;
