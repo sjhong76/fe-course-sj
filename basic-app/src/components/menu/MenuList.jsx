@@ -1,16 +1,17 @@
 import Menu from './Menu.jsx';
+import style from "./Menu.module.css";
 
 export default function MenuList({ list }) {
     return (
-        <nav>
-            <ul>
-                { list.map((item, idx) => 
+        <ul className={style.menu_list}>
+            { list.map((menu, idx) =>
+                <div>
                     <Menu   key={idx}
-                            title={item.title}
-                            href={item.href}
-                            style={item.style} />
-                ) }
-            </ul>
-        </nav>
+                            title={menu.title}
+                            href={menu.href}
+                            style={menu.style} />
+                </div>
+            ) }
+        </ul>
     )
 }

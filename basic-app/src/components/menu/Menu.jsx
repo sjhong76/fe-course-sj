@@ -2,8 +2,8 @@
 
 export default function Menu({title, href, style}) {
     return (
-        <a href={href}
-            className= {style}
+        <a  href={href}
+            className={style}
             >{title}</a>
     )
 }
