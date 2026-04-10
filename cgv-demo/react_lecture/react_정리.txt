@@ -208,3 +208,39 @@
     예) React
     <button type="button" onClick={handleClick} />
     <button type="button" onClick={() => {}} />
+
+    (3) 이벤트 객체 활용 - 이벤트 발생 시 호출되는 객체
+    - 이벤트객체.target -> 이벤트 객체 target여서
+    이벤트객체.target.name, 이벤트객체.target.innrtText 등....
+
+
+    예)
+    const handleClick = () => {
+
+        
+    }
+
+    <button type="button" name = "버튼1" onClick=[/> 
+    <button type="button" name = "버튼1" onClick=[/> 
+
+9. 상태 관리(State)
+    (1) 컴포넌트가 관리하는 동적인 값이 변경되면, 리액트 컴포넌트가 자동으로 리렌더링 함
+    (2) useState 사용법
+        [형식] import { userState } from 'react';
+
+                const [(동적값)변수, set변수명] = userState(변수 초기값);
+        예) Number :: const [number setNumber] = useState(0);
+            String :: const [string, setString] = userState('');
+            Array :: const [array, setArray] = setState([]);
+            Object :: const [obj, setObj] = useState({});
+
+
+10. Ref - userRef
+    (1) Ref란?
+    - 실제 DOM 요소를 직접 참조하여 관리하는 기능을 가짐 (= Reference)
+    (2) useRef 사용법
+    - import nameRef = useRef(null);
+    const handleOnChange = () => {}
+    <input type="text" name="name" ref={nameRef} onChange={handleOnChange}/>
+    (3) DOM 입력폼 값 가져오기 : name.Ref.current.value
+        DOM 입력폼 포커스 정의 : name.Ref.current.focus()
