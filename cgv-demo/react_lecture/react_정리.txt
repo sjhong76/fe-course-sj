@@ -244,3 +244,36 @@
     <input type="text" name="name" ref={nameRef} onChange={handleOnChange}/>
     (3) DOM 입력폼 값 가져오기 : name.Ref.current.value
         DOM 입력폼 포커스 정의 : name.Ref.current.focus()
+
+11. 리액트 라이프 사이클 & 리액트 개발자 도구(react developer tools)
+    (1) 라이프 사이클 3단계
+    - Mount(마운트) : 처음 컴포넌트가 생성될 때 
+    - Update(업데이트) : 변화되는 부분 업데이트 되는 것
+    - UnMount(언마운트) : 종료, 제거
+    (2) Mount(마운트)
+    - 컴포넌트가 처음으로 렌더링되는 시점
+    - 예) API를 호출하거나 초기 데이터 렌더링
+    (3) Update(업데이트)
+    - 컴포넌트가 자동으로 변경, 즉 리렌더링되는 시점
+    - 예) State 변경, props 변경, 부모 컴포넌트가 변경되는 경우 등
+    (4) Unmount(제거)
+    - 컴포넌트가 화면에서 사라질 때
+    - 예) 이벤트 종료 시점, 타이머가 제거되는 시점, 메모리 정리되는 시점 등
+    (5) useEffect로 라이프사이클 제어 가능(💥)
+      import { useEffect } from 'react';
+      
+      export default function [컴포넌트명]() {
+        userEffect(() => {
+            //1. 마운트 or 업데이트 시 출력
+            console.log("Mount or Update!!);
+            //. 언마운트
+            return () => {
+                console.log("Unmount!!);
+            }
+        } , [dependencies, ...]);
+
+        return (
+            <></>
+        )
+      }
+      형식 : 

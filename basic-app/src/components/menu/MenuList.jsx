@@ -1,17 +1,24 @@
+import { useState } from 'react';
 import Menu from './Menu.jsx';
 import style from "./Menu.module.css";
 
-export default function MenuList({ list }) {
+export default function MenuList({ menus, style }) {
+    const handleClick = (e) => {
+        e.preventDefault();
+        alert("메뉴 클릭됨");
+    }
     return (
-        <ul className={style.menu_list}>
-            { list.map((menu, idx) =>
-                <div>
-                    <Menu   key={idx}
-                            title={menu.title}
-                            href={menu.href}
-                            style={menu.style} />
-                </div>
-            ) }
-        </ul>
+        <nav>
+            <ul className={style}>
+                { menus.map((menu, idx) =>
+                    <li key={idx}>
+                        <Menu   href={menu.href}
+                                style={menu.style}
+                                name={menu.name}
+                                click={handleClick} />
+                    </li>
+                ) }
+            </ul>
+        </nav>
     )
 }

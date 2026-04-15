@@ -13,7 +13,6 @@ export default function UserInfo() {
         addressRef: useRef(null),
         jobRef: useRef(null)
     }
-    // const {nameRef, ageRef, addressRef, jobRef} = refs;
     const [form, setForm] = useState({name:'', age:'', address:'', job:''});
 
     const handleChange = (e) => {
@@ -31,7 +30,7 @@ export default function UserInfo() {
 
     return(
         <div>
-            <h1>UserInfo2</h1>
+            <h1>UserInfo</h1>
             <form name="userInfoForm" onSubmit={handleSubmit}>
                 <ul>                    
                     <li>
@@ -89,7 +88,7 @@ export default function UserInfo() {
                     <li>
                         <button type="submit">전송</button>
                         <button type="button" 
-                                onClick={()=> setForm({name:'', age:'', address:'', job:'' })}>다시쓰기</button>
+                                onClick={()=> setForm({name:'', age:'', address:'', job:''})}>다시쓰기</button>
                     </li>
                     
                 </ul>
