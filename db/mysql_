@@ -1970,7 +1970,7 @@ select * from information_schema.tables
 	where table_name = 'emp';
     
 insert into emp()
-	value('S001', '홍상진', 'M', curdate(), null);
+	value('S002', '홍상순', 'F', curdate(), null, null, null);
     
 desc emp;
 
@@ -2023,3 +2023,170 @@ insert into emp2(
             salary
             )
 		value('홍상길', 'M', now(), null);
+
+ /*******************************************************
+	DDL - 테이블의 변경 : ALTER TABLE
+    형식 > ALTER TABLE [테이블명]
+			ADD COLUMN [NEW COlUMN, 데이터 타입] -- NULL 허용
+            MODIFY COLUMN [MODIFY COLUMN, 데이터 타입] -- 크기고려
+            DROP COLUMN [DROP COLUMN]
+ ********************************************************/
+ select * from emp2;
+ 
+show tables;
+desc emp;
+
+-- emp 테이블에 phone 컬럼 추가
+alter table emp
+	add column phone char(13);
+    
+select * from emp;
+
+-- phone 컬럼의 크기를 20으로 변경, 크기가 커지는 경우 정상 실행
+alter table emp
+	modify column phone char(20);
+
+desc emp;
+
+alter table emp
+	modify column ename varchar(2) not null;
+    
+ /*******************************************************
+	데이터 수정 : 	UPDATE
+    형식 > 	SET [캄럼명 = NEW데이터...]
+		WHERE [조건절]
+	!! MySQL는 Update 권한 변경 후 진행
+    ==> SET SQL_SAFE_UPDATES = 0(허용) / 1(불가);
+ ********************************************************/
+ -- S001 사번의 폰번호 업데이트, 업데이트 모드 허용으로 수정
+set sql_safe_updates = 0;
+update emp
+	set phone = '010-1234-4567'
+    where eid = 'S001';
+ -- 모든 사원의 폰번호를 '010-1111-1234' 수정
+update emp
+	set phone = '010-1111-1234';
+select * from emp;
+desc emp;
+
+-- phone 컬럼에 not null 제약 추가
+alter table emp
+	modify phone char(20) not null;
+desc emp;
+
+-- emp 테이블에 email 컬럼 추가 후 not null 제약 정의
+-- 1) 컬럼 추가 시 null 허용
+-- 2) update 명령으로 기존 데이터 추가
+-- 3) not null 제약 정의
+alter table emp	add email varchar(20);
+desc emp;
+select * from emp;
+update emp set email = 'test@naver.com';
+alter table emp modify email varchar(20) not null;
+desc emp;
+
+
+
+-- employee 테이블을 복제하여 copy_emp 테이블 행성
+show tables;
+
+create table copy_emp
+as
+select * from employee;
+
+show tables;
+
+desc copy_emp;
+select count(*) from copy_emp;
+
+select * from copy_emp;
+
+
+-- 홍길동 사원의 급여를 6000으로 수정
+update copy_emp
+	set salary = 6000
+    where emp_id = 'S0001';
+
+-- 안경태 사원의 입사일을 '20210705'로 수정 
+select emp_id from copy_emp where emp_name = '안경태';
+select * from copy_emp where emp_name = '안경태';
+update copy_emp
+	set hire_date = cast('20210705' as date)
+    where emp_id = 'S0007';
+
+-- (1) emp2 테이블에 retire_date 컬럼 추가 : date 타입, null 허용
+-- (2) null 데이터를 현재 날짜로 수정
+-- (3) retire_date를 'not null' 제약 정의
+desc emp2;
+select * from emp2;
+alter table emp2
+	add column retire_date date;
+update emp2
+	set retire_date = curdate();
+alter table emp2
+	modify column retire_date date not null;
+    
+desc emp2;
+
+-- 부서명이 정보시스템(SYS)인 모든 사원의 급여를 20% 증가
+select * from copy_emp;
+
+update copy_emp
+	set salary = salary + salary * 0.2
+    where dept_id = (select dept_id from department
+	where dept_name='정보시스템');
+
+-- 'S0003'인 강우동 사원의 영어이름을 'kang', 입사일은 현재날짜, 부서를 MKT으로 변경
+update copy_emp
+	set eng_name = 'kang'
+    where emp_id = 'S0003';
+ update copy_emp
+	set dept_id = 'MKT'
+    where emp_id = 'S0003';
+
+select * from copy_emp where emp_id = 'S0003';
+
+-- 트랜젝션별 업데이트 정의
+-- 트랜젝션 관리 명령어는 DTL : commit(작업완료), rollback(작업복원), 
+-- 현재 트랜젝션 방식 확인 1, 시스템에서 자동 트랜젝션 관리
+-- DML 명령어에 영량을 줌, DDL은 관리 방식에 상관없이 무조건 autocommit 
+
+select @@autocommit;
+set autocommit = 0;  -- 트랜젝션 관리 방식을 수동으로 전환
+
+select * from emp;
+commit; -- 새로운 트랜젝션 시작하는 시점
+
+-- 홍길동의 급여를 3000으로 수정
+update emp
+	set salary = 3000
+    where eid = 'S002';
+
+rollback;
+
+ /*******************************************************
+	데이터 수정 : 	DELETE
+    형식 > DELETE FROM [테이블명]
+		WHERE [조건절]
+	!! MySQL는 Update 권한 변경 후 진행
+    ==> SET SQL_SAFE_UPDATES = 0(허용) / 1(불가);
+ ********************************************************/
+ select @@sql_safe_updates;
+ select @@autocommit;
+ commit;
+ 
+ -- emp 테이블에서 홍상순 사원 삭제
+ delete from emp
+	where eid in ('S001', 'S002');
+select * from emp;
+rollback;
+
+commit;
+-- emp 테이블의 모든 사원을 삭제해주세요. trucate 명령어 사용
+select * from emp;
+truncate table emp;
+commit;
+
+set autocommit = 1;
+
+select @@autocommit;
