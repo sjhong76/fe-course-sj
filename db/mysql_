@@ -1743,3 +1743,52 @@ INNER JOIN unit AS u
     ON d.unit_id = u.unit_id
 WHERE u.unit_name = '제3본부'
 ORDER BY v.total_vacation_days DESC;
+
+-- 휴가사용일수가 15일 이상되는 사원들의 사원명, 부서아이디, 부서명, 본부아이디, 본부명 조회
+select  ve.emp_name,
+		ve.dept_id,
+        ve.dept_name,
+        u.unit_id,
+        u.unit_name
+	from unit u, v_emp_dept ve
+    where u.unit_id = ve.unit_id
+		and ve.duration >= 15
+	order by ve.duration desc;
+
+
+ /*******************************************************
+	DDL(Data Definition Language) : 생성, 수정, 삭제 (크알드트, CREATE, ALTER, DROP, TRUNCATE)
+    DML(Data Manuplation Language) : 생성, 읽기, 갱신, 삭제 (세인업데, SELECT, INSERT, UPDATE, DELETE)
+    C(Create) - Insert
+    R(Read) - Select
+    U(Update) - Update
+    D(Delete) - Delete
+********************************************************/
+
+ /*******************************************************
+	DDL(Data Definition Language) : 생성, 수정, 삭제 (크알드트, CREATE, ALTER, DROP, TRUNCATE)
+    테이블 생성 형식>
+		CREATE TABLE [테이블명] (
+			컬럼명	데이터타입	옵션(제약사항,NULL포함여부...)
+            ....
+		)
+	데이터 타입 정리
+    분류			타입			크기/형식			설명			사용예
+------------------------------------------------------------------
+    정수형		tinyint		1byte		작은 정수값		상태값(0/1)
+				smallint 	2byte						카운트
+                int			4byte		디폴트 정수값		일반정수값
+                bigint		8byte		큰 정수값			pk, 주문번호
+                float		4byte		부동소스점			거의 사용안함
+                double		8byte		디폴트값			통계수치
+	문자형(고정)	char		고정길이		빠른공간확보(장)		코드값
+										공간낭비(단)
+	문자형(가변)	varchar		가변길이		가장 많이 사용됨 	이름, 주소....
+    텍스트		text		~ 64k		긴 문장 저장		게시글
+				longtext	~ 4GB		초대형 텍스트		로그
+	바이너리		blob		64, ~4GB    이미지 파일, 파일저장
+	날짜			date		yyyy-mm-dd	날짜				생일
+				dateTime	date + 시간	날짜, 시간..		작업완료
+	JSON		JSON		JSON구조		API 데이터처리				API 응답
+*******************************************************************/
+desc employee;
